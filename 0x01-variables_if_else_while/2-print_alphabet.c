@@ -1,19 +1,7 @@
 #include <stdio.h>
-/**
-* main - Entry point
-*
-* Description: This program prints the lowercase alphabet
-*
-* Return: Always 0 (Success)
-*/
+/* This is the main function */
 int main(void)
 {
-char c = 'a';
-while (c <= 'z')
-{
-putchar(c);
-c++;
-}
-putchar('\n');
-return (0);
+// code goes here
+return 0;
 }

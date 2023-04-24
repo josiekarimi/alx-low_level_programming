@@ -1,24 +1,16 @@
-#include <stdio.h>x
+#include <stdio.h>
 /**
- * main - Entry point of the program
- *
- * Return: Always 0 (Success)
- */
-int main()
+* main - Prints all possible combinations of two two-digit numbers
+*
+* Return: Always 0
+*/
+int main(void)
 {
-char lowercase = 'a';
-char uppercase = 'A';
-// print lowercase alphabet
-while (lowercase <= 'z') {
-putchar(lowercase);
-lowercase++;
-}
-// print uppercase alphabet
-while (uppercase <= 'Z') {
-putchar(uppercase);
-uppercase++;
-}
-// print newline
+int i;
+for (i = 0; i < 26; i++)
+putchar(i + 'a');
+for (i = 0; i < 26; i++)
+putchar(i + 'A');
 putchar('\n');
 return (0);
 }

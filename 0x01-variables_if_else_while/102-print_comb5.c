@@ -1,6 +1,7 @@
 #include <stdio.h>
 /**
-* main - prints all possible different combinations of three digits
+* main - Prints all possible combinations of two two-digit numbers
+*
 * Return: Always 0
 */
 int main(void)
@@ -24,3 +25,4 @@ putchar(' ');
 }
 putchar('\n');
 return (0);
+}

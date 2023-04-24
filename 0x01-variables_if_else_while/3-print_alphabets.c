@@ -1,5 +1,11 @@
 #include <stdio.h>x
-int main() {
+/**
+ * main - Entry point of the program
+ *
+ * Return: Always 0 (Success)
+ */
+int main()
+{
 char lowercase = 'a';
 char uppercase = 'A';
 // print lowercase alphabet
@@ -14,5 +20,5 @@ uppercase++;
 }
 // print newline
 putchar('\n');
-return 0;
+return (0);
 }

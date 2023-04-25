@@ -1,26 +1,19 @@
 #include "main.h"
-/* function prototype */
+#include "main.h"
+
+/**
+ * print_alphabet_x10 - prints 10 times the alphabet, in lowercase, followed by a new line
+ */
 void print_alphabet_x10(void)
 {
-char c;
+char letter;
 int i;
 for (i = 0; i < 10; i++)
 {
-for (c = 'a'; c <= 'z'; c++)
+for (letter = 'a'; letter <= 'z'; letter++)
 {
-_putchar(c);
+_putchar(letter);
 }
 _putchar('\n');
 }
 }
-/**
-* main - entry point
-*
-* Return: always (0)
-*/
-int main(void)
-{
-print_alphabet_x10();
-return (0);
-}
-

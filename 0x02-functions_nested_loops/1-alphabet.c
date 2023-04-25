@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "main.h"
-/* function prototype */
 void print_alphabet(void);
 /**
 * print_alphabet - prints the alphabet in lowercase, followed by a newline

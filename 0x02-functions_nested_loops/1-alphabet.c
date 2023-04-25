@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include "main.h"
 /* function prototype */
 void print_alphabet(void);
 /**

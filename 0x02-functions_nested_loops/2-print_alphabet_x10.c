@@ -1,18 +1,4 @@
-#include <unistd.h>
-/**
-* _putchar - writes a character to stdout
-* @c: the character to print
-*
-* Return: On success 1, on error -1 and errno set appropriately.
-*/
-int _putchar(char c)
-{
-return write(1, &c, 1);
-}
-/**
-* print_alphabet_x10 - prints the alphabet in lowercase 10 times,
-* followed by a new line
-*/
+#include "main.h"
 /* function prototype */
 void print_alphabet_x10(void)
 {

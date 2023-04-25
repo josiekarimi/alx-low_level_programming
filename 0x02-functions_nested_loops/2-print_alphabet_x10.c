@@ -13,6 +13,7 @@ return write(1, &c, 1);
 * print_alphabet_x10 - prints the alphabet in lowercase 10 times,
 * followed by a new line
 */
+/* function prototype */
 void print_alphabet_x10(void)
 {
 char c;

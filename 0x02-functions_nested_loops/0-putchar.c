@@ -1,29 +1,18 @@
-#include <unistd.h>
-int _putchar(char c);
+#include <stdio.h>
+#include "main.h"
 /**
-* main - prints all possible different combinations of three digits
-* Return: Always 0
+* main - entry point of the program
+*
+* Return: Always 0 (Success)
 */
 int main(void)
 {
-char c = 'a';
-while (c <= 'z')
+char c[] = "_putchar\n";
+for (int i = 0; i < sizeof(c); i++)
 {
-_putchar(c);
-c++;
+putchar(c[i]);
 }
-_putchar('\n');
 return (0);
 }
 
-/**
-* _putchar - writes the character c to stdout
-* @c: The character to print
-*
-* Return: On success 1.
-* On error, -1 is returned, and errno is set appropriately.
-*/
-int _putchar(char c)
-{
-return (write(1, &c, 1));
-}
+

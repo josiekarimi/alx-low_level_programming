@@ -1,17 +1,24 @@
 #include <stdio.h>
 #include "main.h"
-
 /**
-* print_alphabet - Prints the lowercase alphabet using _putchar
+* main - prints all possible different combinations of three digits
+* Return: Always 0
+*/x
+/**
+* print_alphabet - prints the alphabet in lowercase followed by a new line
 */
 void print_alphabet(void)
 {
 char c = 'a';
 while (c <= 'z')
 {
-_putchar(c);
+putchar(c);
 c++;
 }
-_putchar('\n');
+putchar('\n');
 }
-
+int main(void)
+{
+print_alphabet();
+return (0);
+}

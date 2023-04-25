@@ -1,9 +1,9 @@
-#include "main.h"
+#include <unistd.h>
 
-/**
-* print_alphabet_x10 - prints the alphabet in lowercase 10 times
-* followed by a new line
-*/
+int _putchar(char c)
+{
+return write(1, &c, 1);
+}
 void print_alphabet_x10(void)
 {
 char c;
@@ -17,3 +17,9 @@ _putchar(c);
 _putchar('\n');
 }
 }
+int main(void)
+{
+print_alphabet_x10();
+return (0);
+}
+

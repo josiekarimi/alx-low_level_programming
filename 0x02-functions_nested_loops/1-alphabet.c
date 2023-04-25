@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 /* function prototype */
 void print_alphabet(void);
 /**
@@ -7,13 +8,14 @@ void print_alphabet(void);
 /* function definition */
 void print_alphabet(void)
 {
-char c;
+xchar c;
 for (c = 'a'; c <= 'z'; c++)
 {
 putchar(c);
 }
 putchar('\n');
 }
+
 /* main function */
 /**
 * main - entry point of the program
@@ -24,3 +26,5 @@ int main(void)
 {
 print_alphabet();
 return (0);
+}
+

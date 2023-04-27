@@ -17,5 +17,5 @@ result += a;
 a <<= 1;
 b >>= 1;
 }
-return result;
+return (result);
 }

@@ -22,17 +22,22 @@ void read_elf_header(const char *filename)
 {
 int fd, bytes_read;
 Elf32_Ehdr header;
+/* Open the file */
 fd = open(filename, O_RDONLY);
 if (fd == -1)
 display_error("Error opening file");
+/* Read the ELF header */
 bytes_read = read(fd, &header, sizeof(header));
 if (bytes_read != sizeof(header))
 display_error("Error reading ELF header");
+/* Validate the ELF magic number */
 if (header.e_ident[EI_MAG0] != ELFMAG0 ||
 header.e_ident[EI_MAG1] != ELFMAG1 ||
 header.e_ident[EI_MAG2] != ELFMAG2 ||
 header.e_ident[EI_MAG3] != ELFMAG3)
 display_error("Not an ELF file");
+/* Display the required information */
+
 printf("Magic: %02x %02x %02x %02x\n",
 header.e_ident[EI_MAG0],
 header.e_ident[EI_MAG1],

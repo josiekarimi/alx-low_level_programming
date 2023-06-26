@@ -63,6 +63,7 @@ if (argc != 2)
 display_error("Usage: elf_header elf_filename");
 }
 read_elf_header(argv[1]);
+
 return (0);
 }
 

@@ -5,33 +5,16 @@
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
+#include <elf.h>
 
 #define BUF_SIZE 64
-
-/* Structure representing the ELF header */
-typedef struct {
-	unsigned char e_ident[16];
-	uint16_t e_type;
-	uint16_t e_machine;
-	uint32_t e_version;
-	uint64_t e_entry;
-	uint64_t e_phoff;
-	uint64_t e_shoff;
-	uint32_t e_flags;
-	uint16_t e_ehsize;
-	uint16_t e_phentsize;
-	uint16_t e_phnum;
-	uint16_t e_shentsize;
-	uint16_t e_shnum;
-	uint16_t e_shstrndx;
-} Elf64_Ehdr;
 
 /* Function to print the ELF header information */
 void print_elf_header(const Elf64_Ehdr *header)
 {
 	printf("ELF Header:\n");
 	printf("  Magic:   ");
-	for (int i = 0; i < 16; i++) {
+	for (int i = 0; i < EI_NIDENT; i++) {
 		printf("%02x ", header->e_ident[i]);
 	}
 	printf("\n");
@@ -62,7 +45,7 @@ void print_elf_header(const Elf64_Ehdr *header)
 		break;
 	}
 
-	printf("  Version:                           %u (current)\n", header->e_version);
+	printf("  Version:                           %u (current)\n", header->e_ident[EI_VERSION]);
 	printf("  OS/ABI:                            ");
 	switch (header->e_ident[EI_OSABI]) {
 	case ELFOSABI_SYSV:
@@ -142,12 +125,12 @@ int main(int argc, char *argv[])
 {
 	if (argc != 2) {
 		fprintf(stderr, "Usage: %s elf_filename\n", argv[0]);
-		return 98;
+		return 1;
 	}
 
 	Elf64_Ehdr header;
 	if (read_elf_header(argv[1], &header) != 0) {
-		return 98;
+		return 1;
 	}
 
 	print_elf_header(&header);

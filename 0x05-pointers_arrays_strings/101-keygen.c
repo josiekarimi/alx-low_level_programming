@@ -2,6 +2,11 @@
 #include <stdlib.h>
 #include <time.h>
 
+/**
+ * generate_password - Generates a random valid password for 101-crackme
+ *
+ * Return: Pointer to the generated password
+ */
 char *generate_password(void);
 
 /**
@@ -11,24 +16,19 @@ char *generate_password(void);
  */
 int main(void)
 {
+char *password;
 srand(time(0));
-char *password = generate_password();
+password = generate_password();
 printf("Generated password: %s\n", password);
 free(password);
 return (0);
 }
-/**
- * generate_password - Generates a random valid password for 101-crackme
- *
- * Return: Pointer to the generated password
- */
 char *generate_password(void)
 {
 char *password = malloc(sizeof(char) * 100);
 int i, length, type;
 char c;
-length = rand() % 10 + 6;
-/* Password length between 6 and 15 */
+length = rand() % 10 + 6; /* Password length between 6 and 15 */
 i = 0;
 while (i < length)
 {

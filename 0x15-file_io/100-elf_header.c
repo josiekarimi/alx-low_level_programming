@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-#define ELF_MAGIC_SIZE 4
+#define ELF_MAGIC_SIZE 16
 
 struct ElfHeader {
 	unsigned char e_ident[ELF_MAGIC_SIZE]; /* ELF identification bytes */
@@ -14,18 +14,16 @@ struct ElfHeader {
 	uint8_t e_osabi;                       /* OS-specific ELF ABI */
 	uint8_t e_abiversion;                  /* ELF ABI version */
 	uint16_t e_type;                       /* ELF file type */
-	uint32_t e_entry;                      /* Entry point address */
+	uint64_t e_entry;                      /* Entry point address */
 };
 
-/**
- * print_elf_header - Prints the ELF header information
- * @header: Pointer to the ELF header structure
- */
 void print_elf_header(const struct ElfHeader *header)
 {
+	int i;
+
 	printf("ELF Header:\n");
 	printf("  Magic:   ");
-	for (int i = 0; i < ELF_MAGIC_SIZE; i++)
+	for (i = 0; i < ELF_MAGIC_SIZE; i++)
 		printf("%02x ", header->e_ident[i]);
 	printf("\n");
 	printf("  Class:                             ELF%d\n", header->e_class == 1 ? 32 : 64);
@@ -34,41 +32,39 @@ void print_elf_header(const struct ElfHeader *header)
 	printf("  OS/ABI:                            UNIX - System V\n");
 	printf("  ABI Version:                       %d\n", header->e_abiversion);
 	printf("  Type:                              %s (Shared object file)\n", header->e_type == 2 ? "EXEC" : "DYN");
-	printf("  Entry point address:               %#x\n", header->e_entry);
+	printf("  Entry point address:               %#lx\n", header->e_entry);
 }
 
-/**
- * main - Entry point of the program
- * @argc: Number of command-line arguments
- * @argv: Array of command-line arguments
- * Return: 0 on success, non-zero on failure
- */
 int main(int argc, char *argv[])
 {
+	const char *filename;
+	int fd;
+	struct ElfHeader header;
+	ssize_t bytes_read;
+
 	if (argc != 2)
 	{
 		fprintf(stderr, "Usage: elf_header elf_filename\n");
-		return (1);
+		return 1;
 	}
 
-	const char *filename = argv[1];
-	int fd = open(filename, O_RDONLY);
+	filename = argv[1];
+	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
 		fprintf(stderr, "Error opening file: %s\n", filename);
-		return (98);
+		return 98;
 	}
 
-	struct ElfHeader header;
-	ssize_t bytes_read = read(fd, &header, sizeof(struct ElfHeader));
+	bytes_read = read(fd, &header, sizeof(struct ElfHeader));
 	if (bytes_read != sizeof(struct ElfHeader))
 	{
 		fprintf(stderr, "Error reading ELF header from file: %s\n", filename);
 		close(fd);
-		return (98);
+		return 98;
 	}
 
 	print_elf_header(&header);
 	close(fd);
-	return (0);
+	return 0;
 }

@@ -1,0 +1,51 @@
+#include <stdio.h>
+
+#define PASSWORD_LENGTH 20
+
+/**
+ * findPassword - Retrieve the password from the program
+ *
+ * This function retrieves the password from the program.
+ * In this example, the password is assumed to be stored in a variable named "password".
+ *
+ * Return: The password as a string
+ */
+char* findPassword()
+{
+char* password = "my_password123";
+return (password);
+}
+
+/**
+ * savePasswordToFile - Save the password to a file
+ * @password: The password to be saved
+ *
+ * This function saves the provided password to a file named "101-password".
+ * If the file cannot be opened for writing, an error message is printed to stderr and the program exits.
+ */
+void savePasswordToFile(const char* password)
+{
+FILE* file = fopen("101-password", "w");
+if (file == NULL) {
+fprintf(stderr, "Error opening file for writing.\n");
+exit(1);
+}
+fprintf(file, "%s", password);
+fclose(file);
+}
+
+/**
+ * main - Entry point of the program
+ *
+ * This function finds the password using the findPassword function and saves it to a file
+ * using the savePasswordToFile function.
+ *
+ * Return: 0 on success
+ */
+int main(void)
+{
+char* password = findPassword();
+savePasswordToFile(password);
+return (0);
+}
+

@@ -6,14 +6,7 @@
 
 #define ELF_MAGIC_SIZE 16
 
-/**
- * ElfHeader - Print ELF file header information
- *
- * Description: Prints the contents of the ELF file header.
- **/
-
-struct ElfHeader
-{
+struct ElfHeader {
 	unsigned char e_ident[ELF_MAGIC_SIZE]; /* ELF identification bytes */
 	uint8_t e_class;                       /* ELF class (32-bit or 64-bit) */
 	uint8_t e_data;                        /* ELF data encoding (little-endian or big-endian) */
@@ -23,13 +16,6 @@ struct ElfHeader
 	uint16_t e_type;                       /* ELF file type */
 	uint64_t e_entry;                      /* Entry point address */
 };
-
-/**
- * print_elf_header - Print ELF file header information
- * @header: Pointer to the ELF header structure
- *
- * Description: Prints the contents of the ELF file header.
- **/
 
 void print_elf_header(const struct ElfHeader *header)
 {
@@ -49,16 +35,6 @@ void print_elf_header(const struct ElfHeader *header)
 	printf("  Entry point address:               %#lx\n", header->e_entry);
 }
 
-/**
- * main - Entry point of the program
- * @argc: Number of command-line arguments
- * @argv: Array of command-line argument strings
- *
- * Return: 0 on success, 1 if incorrect number of arguments, 98 on file errors
- *
- * Description: Reads and prints the ELF header of a given file.
- **/
-
 int main(int argc, char *argv[])
 {
 	const char *filename;
@@ -69,7 +45,7 @@ int main(int argc, char *argv[])
 	if (argc != 2)
 	{
 		fprintf(stderr, "Usage: elf_header elf_filename\n");
-		return (1);
+		return 1;
 	}
 
 	filename = argv[1];
@@ -77,7 +53,7 @@ int main(int argc, char *argv[])
 	if (fd == -1)
 	{
 		fprintf(stderr, "Error opening file: %s\n", filename);
-		return (98);
+		return 98;
 	}
 
 	bytes_read = read(fd, &header, sizeof(struct ElfHeader));
@@ -85,10 +61,10 @@ int main(int argc, char *argv[])
 	{
 		fprintf(stderr, "Error reading ELF header from file: %s\n", filename);
 		close(fd);
-		return (98);
+		return 98;
 	}
 
 	print_elf_header(&header);
 	close(fd);
-	return (0);
+	return 0;
 }
